@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 40" width="352" height="80" role="img" aria-labelledby="t">
+  <title id="t">WAYFARER</title>
+  <g transform="translate(20 20)">
+    <circle r="15" fill="none" stroke="#1E2A38" stroke-width="2"/>
+    <ellipse rx="6.2" ry="15" fill="none" stroke="#1E2A38" stroke-width="1.1"/>
+    <path d="M-15 0H15" stroke="#1E2A38" stroke-width="1.1"/>
+    <path d="M-10.5 7C-6 -6 4 -9 10.5 -6.5" fill="none" stroke="#E4572E" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="0.1 4.2"/>
+    <circle cx="-10.5" cy="7" r="2.8" fill="#2A9D8F"/>
+    <circle cx="10.5" cy="-6.5" r="3.4" fill="#E4572E"/>
+  </g>
+  <g fill="none" stroke="#1E2A38" stroke-width="3" stroke-linejoin="miter" stroke-linecap="square" transform="translate(48 12)">
+    <path d="M0 0L3.4 16L7 5.5L10.6 16L14 0"/>
+    <path d="M19 16L25 0L31 16M21.6 10.5H28.4"/>
+    <path d="M35 0L41 8L47 0M41 8V16"/>
+    <path d="M61 0H52V16M52 7.5H59"/>
+    <path d="M65 16L71 0L77 16M67.6 10.5H74.4"/>
+    <path d="M82 16V0H88A4.2 4.2 0 0 1 88 8.4H82M86.5 8.4L92.5 16"/>
+    <path d="M107 0H97V16H107M97 7.5H105"/>
+    <path d="M112 16V0H118A4.2 4.2 0 0 1 118 8.4H112M116.5 8.4L122.5 16"/>
+  </g>
+</svg>

@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WAYFARER — The World, Reimagined</title>
+<meta name="description" content="WAYFARER is an interactive atlas for curious travellers. Explore 25 places on a living world map, filter by theme and region, save places to draw your own route, and read culture notes before you go.">
+<meta name="theme-color" content="#F4EFE3">
+<link rel="canonical" href="https://wayfarer-indol.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WAYFARER">
+<meta property="og:title" content="WAYFARER — The World, Reimagined">
+<meta property="og:description" content="An interactive atlas: explore places, save them and watch your route draw itself across the map.">
+<meta property="og:url" content="https://wayfarer-indol.vercel.app/">
+<meta property="og:image" content="https://wayfarer-indol.vercel.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WAYFARER — The World, Reimagined">
+<meta name="twitter:description" content="An interactive atlas for curious travellers.">
+<meta name="twitter:image" content="https://wayfarer-indol.vercel.app/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&amp;family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.wayfarerReady)document.documentElement.classList.remove('js');},4000);</script>
+<script type="module" src="main.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg class="defs" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="mark" viewBox="0 0 176 40">
+      <g transform="translate(20 20)">
+        <circle r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+        <ellipse rx="6.2" ry="15" fill="none" stroke="currentColor" stroke-width="1.1"/>
+        <path d="M-15 0H15" stroke="currentColor" stroke-width="1.1"/>
+        <path d="M-10.5 7C-6 -6 4 -9 10.5 -6.5" fill="none" stroke="#E4572E" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="0.1 4.2"/>
+        <circle cx="-10.5" cy="7" r="2.8" fill="#2A9D8F"/>
+        <circle cx="10.5" cy="-6.5" r="3.4" fill="#E4572E"/>
+      </g>
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="miter" stroke-linecap="square" transform="translate(48 12)">
+        <path d="M0 0L3.4 16L7 5.5L10.6 16L14 0"/>
+        <path d="M19 16L25 0L31 16M21.6 10.5H28.4"/>
+        <path d="M35 0L41 8L47 0M41 8V16"/>
+        <path d="M61 0H52V16M52 7.5H59"/>
+        <path d="M65 16L71 0L77 16M67.6 10.5H74.4"/>
+        <path d="M82 16V0H88A4.2 4.2 0 0 1 88 8.4H82M86.5 8.4L92.5 16"/>
+        <path d="M107 0H97V16H107M97 7.5H105"/>
+        <path d="M112 16V0H118A4.2 4.2 0 0 1 118 8.4H112M116.5 8.4L122.5 16"/>
+      </g>
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.8" fill="none"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 16 16"><path d="M2 8h12" stroke="currentColor" stroke-width="1.8" fill="none"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="8" cy="8" rx="2.6" ry="6.2" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M1.8 8h12.4" stroke="currentColor" stroke-width="1.1"/></symbol>
+    <symbol id="i-x" viewBox="0 0 16 16"><path d="M3 3l10 10M13 3 3 13" stroke="currentColor" stroke-width="1.8" fill="none"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 16 16"><path d="M8 15s5-5.2 5-8.6A5 5 0 0 0 3 6.4C3 9.8 8 15 8 15Z" fill="currentColor"/><circle cx="8" cy="6.4" r="1.8" fill="#F4EFE3"/></symbol>
+  </defs>
+</svg>
+
+<header class="bar">
+  <a class="bar__brand" href="#atlas" aria-label="WAYFARER, back to the atlas">
+    <svg viewBox="0 0 176 40" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+  </a>
+  <nav class="bar__nav" id="nav" aria-label="Primary">
+    <ul>
+      <li><a href="#atlas">Atlas</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#notes">Culture notes</a></li>
+      <li><a href="#ledger">Route ledger</a></li>
+      <li><a href="#legend">Reading the atlas</a></li>
+      <li><a class="bar__cta" href="#commission">Commission an atlas</a></li>
+    </ul>
+  </nav>
+  <a class="bar__saved" href="#ledger"><svg aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><span>Saved</span> <span class="bar__count" data-saved-count>0</span></a>
+  <button class="bar__menu" type="button" aria-expanded="false" aria-controls="nav"><span class="bar__menu-lines" aria-hidden="true"></span><span class="bar__menu-label">Menu</span></button>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- Plate I · The atlas -->
+  <section id="atlas" class="atlas" aria-labelledby="atlas-title">
+    <div class="atlas__intro">
+      <p class="eyebrow"><span>Atlas No. 08</span><span class="eyebrow__rule" aria-hidden="true"></span><span>Plate I</span></p>
+      <h1 id="atlas-title" class="stamp">The world, <span class="hl">reimagined.</span></h1>
+      <p class="atlas__lede">An atlas you can travel. Choose a theme or a region, open a place to read its culture note, and save the ones that call to you. Your route draws itself across the map.</p>
+    </div>
+
+    <div class="atlas__map">
+      <div class="map" id="map" tabindex="0" role="region" aria-roledescription="interactive map" aria-label="World map" aria-describedby="map-help">
+        <svg id="map-svg" class="map__svg" aria-hidden="true" focusable="false"></svg>
+        <div class="map__loading" id="map-loading" aria-hidden="true"><span></span>Drawing coastlines…</div>
+        <div class="map__frame" aria-hidden="true"></div>
+        <div class="map__hud" aria-hidden="true">
+          <p class="map__plate" id="map-plate">Plate I · The World</p>
+          <p class="map__coords" id="map-coords">— · —</p>
+        </div>
+        <div class="map__zoom" role="group" aria-label="Map controls">
+          <button type="button" id="z-in" aria-label="Zoom in"><svg aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></button>
+          <button type="button" id="z-out" aria-label="Zoom out"><svg aria-hidden="true" focusable="false"><use href="#i-minus"/></svg></button>
+          <button type="button" id="z-reset" aria-label="Show the whole world"><svg aria-hidden="true" focusable="false"><use href="#i-globe"/></svg></button>
+        </div>
+        <p class="map__help" id="map-help">Drag to pan. Use the buttons, or Ctrl / ⌘ and scroll, to zoom. On touch screens, use two fingers. With the map focused, arrow keys pan, + and − zoom and 0 resets.</p>
+        <p class="map__note">Illustrative map · Equal Earth projection</p>
+      </div>
+
+      <article class="card" id="place-card" aria-labelledby="card-title" hidden></article>
+
+      <div class="tray" id="tray">
+        <div class="tray__head">
+          <h2 class="tray__title" id="tray-title">Saved <span class="tray__count" data-saved-count>0</span></h2>
+          <p class="tray__dist" id="tray-dist" aria-live="polite">Save places to draw a route between them.</p>
+        </div>
+        <ol class="tray__list" id="tray-list" aria-labelledby="tray-title"></ol>
+        <div class="tray__actions">
+          <button class="btn btn--ink btn--sm" type="button" id="tray-fit" disabled>Fit route</button>
+          <button class="btn-text" type="button" id="tray-clear" disabled>Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="atlas__panel">
+      <fieldset class="seg" id="f-theme">
+        <legend>Theme</legend>
+        <div class="seg__opts" id="theme-opts"></div>
+      </fieldset>
+      <fieldset class="seg" id="f-region">
+        <legend>Region</legend>
+        <div class="seg__opts" id="region-opts"></div>
+      </fieldset>
+      <div class="places">
+        <p class="places__count" id="places-count" aria-live="polite">25 places</p>
+        <ol class="places__list" id="place-list"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plate II · Collections -->
+  <section id="collections" class="cols" aria-labelledby="cols-title">
+    <header class="sec-head">
+      <p class="eyebrow"><span>Plate II</span><span class="eyebrow__rule" aria-hidden="true"></span><span>Collections</span></p>
+      <h2 id="cols-title" class="stamp">Five lines across the map.</h2>
+      <p class="sec-head__lede">Curated journeys that join places by a thread: a trade route, a coastline, a mountain range or a night sky. Plot any of them on the atlas, or save every stop to start your own route.</p>
+    </header>
+    <div class="cols__track-wrap">
+      <ol class="cols__track" id="cols-track" tabindex="0" aria-label="Collections, scroll horizontally"></ol>
+      <div class="cols__nav">
+        <button class="round-btn" type="button" id="cols-prev" aria-label="Previous collection"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        <button class="round-btn" type="button" id="cols-next" aria-label="Next collection"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        <p class="cols__note">Durations and seasons are illustrative suggestions, not departures.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plate III · Culture notes -->
+  <section id="notes" class="notes" aria-labelledby="notes-title">
+    <header class="sec-head sec-head--split">
+      <div>
+        <p class="eyebrow"><span>Plate III</span><span class="eyebrow__rule" aria-hidden="true"></span><span>Culture notes</span></p>
+        <h2 id="notes-title" class="stamp">Eight things worth knowing before you knock.</h2>
+      </div>
+      <p class="sec-head__lede">Customs vary from street to street, so treat these as gentle context rather than rules. Each note links to the places in the atlas where you are likely to meet it.</p>
+    </header>
+    <ol class="notes__grid" id="notes-grid"></ol>
+  </section>
+
+  <!-- Plate IV · Route ledger -->
+  <section id="ledger" class="ledger" aria-labelledby="ledger-title">
+    <header class="sec-head">
+      <p class="eyebrow"><span>Plate IV</span><span class="eyebrow__rule" aria-hidden="true"></span><span>Route ledger</span></p>
+      <h2 id="ledger-title" class="stamp">Your route, leg by leg.</h2>
+      <p class="sec-head__lede">Every place you save becomes a stop. The ledger measures each leg along the great circle, the shortest path over the globe, with the compass bearing you would set off on.</p>
+    </header>
+    <div class="ledger__sheet">
+      <div class="ledger__empty" id="ledger-empty">
+        <svg viewBox="0 0 220 80" aria-hidden="true" focusable="false"><path d="M20 60C60 10 150 10 200 50" fill="none" stroke="#1E2A38" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round"/><circle cx="20" cy="60" r="6" fill="#2A9D8F"/><circle cx="200" cy="50" r="7" fill="#E4572E"/></svg>
+        <p>No stops yet. Open a place on the atlas and choose <strong>Save to route</strong>, or save every stop of a collection.</p>
+        <a class="btn btn--ink" href="#atlas">Open the atlas</a>
+      </div>
+      <div class="ledger__table-wrap" id="ledger-wrap" hidden>
+        <table class="ledger__table">
+          <caption class="visually-hidden">Legs of your saved route with great-circle distance and initial bearing</caption>
+          <thead><tr><th scope="col">Leg</th><th scope="col">From</th><th scope="col">To</th><th scope="col">Distance</th><th scope="col">Bearing</th></tr></thead>
+          <tbody id="ledger-body"></tbody>
+          <tfoot><tr><th scope="row" colspan="3">Total, great-circle</th><td id="ledger-total">—</td><td></td></tr></tfoot>
+        </table>
+        <div class="ledger__actions">
+          <button class="btn btn--ink" type="button" id="ledger-reverse">Reverse the order</button>
+          <a class="btn btn--line" href="#atlas">See it on the map</a>
+        </div>
+        <p class="ledger__fine">Distances assume a spherical Earth (radius 6,371 km) and straight great-circle legs; real journeys are longer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plate V · Reading the atlas -->
+  <section id="legend" class="legend" aria-labelledby="legend-title">
+    <div class="legend__rose" aria-hidden="true">
+      <svg viewBox="-200 -200 400 400" id="rose" focusable="false">
+        <circle r="186" fill="none" stroke="#F4EFE3" stroke-opacity=".25"/>
+        <circle r="170" fill="none" stroke="#F4EFE3" stroke-opacity=".5" stroke-dasharray="1 5"/>
+        <g id="rose-ticks"></g>
+        <g class="rose__star">
+          <path d="M0 -150L16 -16L0 0Z" fill="#F4EFE3"/><path d="M0 -150L-16 -16L0 0Z" fill="#F4EFE3" fill-opacity=".55"/>
+          <path d="M0 150L-16 16L0 0Z" fill="#F4EFE3"/><path d="M0 150L16 16L0 0Z" fill="#F4EFE3" fill-opacity=".55"/>
+          <path d="M150 0L16 16L0 0Z" fill="#F4EFE3"/><path d="M150 0L16 -16L0 0Z" fill="#F4EFE3" fill-opacity=".55"/>
+          <path d="M-150 0L-16 -16L0 0Z" fill="#F4EFE3"/><path d="M-150 0L-16 16L0 0Z" fill="#F4EFE3" fill-opacity=".55"/>
+          <g transform="rotate(45)" opacity=".7"><path d="M0 -96L9 -9L0 0Z" fill="#2A9D8F"/><path d="M0 96L-9 9L0 0Z" fill="#2A9D8F"/><path d="M96 0L9 9L0 0Z" fill="#2A9D8F"/><path d="M-96 0L-9 -9L0 0Z" fill="#2A9D8F"/></g>
+          <circle r="10" fill="#E4572E"/>
+        </g>
+        <text y="-160" text-anchor="middle" class="rose__n">N</text>
+      </svg>
+    </div>
+    <div class="legend__body">
+      <header class="sec-head sec-head--light">
+        <p class="eyebrow"><span>Plate V</span><span class="eyebrow__rule" aria-hidden="true"></span><span>Reading the atlas</span></p>
+        <h2 id="legend-title" class="stamp">A key to the map.</h2>
+      </header>
+      <dl class="keys">
+        <div class="key"><dt><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="7" fill="#E4572E" stroke="#F4EFE3" stroke-width="2.4"/></svg>Place</dt><dd>One of 25 places in the atlas. Select it to read a culture note.</dd></div>
+        <div class="key"><dt><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="8" fill="#2A9D8F" stroke="#F4EFE3" stroke-width="2.4"/><text x="20" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#F4EFE3">2</text></svg>Saved stop</dt><dd>A place in your route, numbered in the order you will visit.</dd></div>
+        <div class="key"><dt><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M4 30C14 6 28 6 36 24" fill="none" stroke="#E4572E" stroke-width="2.6" stroke-linecap="round"/></svg>Your route</dt><dd>Great-circle legs between saved stops, drawn in vermilion ink.</dd></div>
+        <div class="key"><dt><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M4 30C14 6 28 6 36 24" fill="none" stroke="#2A9D8F" stroke-width="2.6" stroke-dasharray="1 5" stroke-linecap="round"/></svg>Collection</dt><dd>A curated line, dotted in teal when you plot it.</dd></div>
+        <div class="key"><dt><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M6 20c6-8 22-8 28 0" fill="none" stroke="#2A9D8F" stroke-opacity=".6" stroke-width="1"/><path d="M8 24c6-7 18-7 24 0" fill="none" stroke="#2A9D8F" stroke-opacity=".4" stroke-width="1"/><path d="M10 28c5-5 15-5 20 0" fill="none" stroke="#2A9D8F" stroke-opacity=".25" stroke-width="1"/></svg>Water lines</dt><dd>Engraved ripples that follow every coastline, after old copperplate charts.</dd></div>
+      </dl>
+      <div class="legend__text">
+        <p><strong>Projection.</strong> The atlas uses the Equal Earth projection, published in 2018, which keeps every country at its true relative area. Africa looks as large as it really is next to Europe, and the poles do not balloon.</p>
+        <p><strong>Data.</strong> Coastlines and borders come from Natural Earth at 1:110 million scale, through the open world-atlas dataset. At this scale small islands are simplified or omitted, and borders are shown for orientation only.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plate VI · Commission -->
+  <section id="commission" class="commission" aria-labelledby="com-title">
+    <header class="sec-head">
+      <p class="eyebrow"><span>Plate VI</span><span class="eyebrow__rule" aria-hidden="true"></span><span>Commission</span></p>
+      <h2 id="com-title" class="stamp">Commission a personal atlas.</h2>
+      <p class="sec-head__lede">Tell us what draws you and we would bind your saved places, notes and routes into a printed atlas of your own, with a cartographer’s first draft to review.</p>
+    </header>
+    <form class="form" id="com-form" novalidate>
+      <div class="form__grid">
+        <div class="field">
+          <label for="c-name">Name</label>
+          <input id="c-name" name="name" type="text" autocomplete="name" required aria-describedby="c-name-err">
+          <p class="field__err" id="c-name-err"></p>
+        </div>
+        <div class="field">
+          <label for="c-email">Email</label>
+          <input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-email-err">
+          <p class="field__err" id="c-email-err"></p>
+        </div>
+        <fieldset class="field field--wide" aria-describedby="c-themes-err">
+          <legend>What should the atlas follow? <span class="field__opt">Choose at least one</span></legend>
+          <div class="checks" id="c-themes"></div>
+          <p class="field__err" id="c-themes-err"></p>
+        </fieldset>
+        <div class="field">
+          <label for="c-format">Format</label>
+          <select id="c-format" name="format" required aria-describedby="c-format-err">
+            <option value="">Choose a format</option>
+            <option value="pocket">Pocket edition, 12 plates</option>
+            <option value="folio">Folio edition, 24 plates</option>
+            <option value="wall">A single wall map</option>
+          </select>
+          <p class="field__err" id="c-format-err"></p>
+        </div>
+        <div class="field field--check">
+          <label class="check"><input type="checkbox" id="c-saved" name="saved"><span id="c-saved-label">Include my saved places</span></label>
+        </div>
+        <div class="field field--wide">
+          <label for="c-msg">Anything else? <span class="field__opt">Optional</span></label>
+          <textarea id="c-msg" name="message" rows="4" maxlength="500" aria-describedby="c-msg-count"></textarea>
+          <p class="field__hint" id="c-msg-count">0 / 500</p>
+        </div>
+      </div>
+      <div class="form__foot">
+        <button class="btn btn--red btn--lg" type="submit">Request a first draft</button>
+        <p class="form__note">Portfolio demo: nothing is sent, stored or charged.</p>
+      </div>
+      <div class="form__done" id="com-done" tabindex="-1" hidden></div>
+    </form>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div class="foot__brand">
+      <svg class="foot__logo" viewBox="0 0 176 40" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+      <p class="foot__line">The world, reimagined.</p>
+    </div>
+    <nav class="foot__nav" aria-label="Footer">
+      <ul>
+        <li><a href="#atlas">Atlas</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#notes">Culture notes</a></li>
+        <li><a href="#ledger">Route ledger</a></li>
+        <li><a href="#legend">Reading the atlas</a></li>
+        <li><a href="#commission">Commission an atlas</a></li>
+      </ul>
+    </nav>
+    <div class="credit">
+      <p class="credit__k">Cartouche</p>
+      <p class="credit__by">Designed &amp; built by <a href="https://www.linkedin.com/in/saadbashirmarketing/" target="_blank" rel="noopener" aria-label="Saad Bashir on LinkedIn (opens in a new tab)">Saad Bashir</a></p>
+      <p class="credit__note">Fictional concept brand — portfolio project.</p>
+      <a class="credit__more" href="https://saadbashirportfolio.vercel.app/websites.html">More work <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <p class="foot__fine">Map data: Natural Earth via world-atlas. The map is illustrative and not for navigation. Culture notes are general context, not rules. WAYFARER is not a real company.</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
